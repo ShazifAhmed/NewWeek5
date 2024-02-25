@@ -1,0 +1,121 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Grocery List API",
+      "description": "API for managing grocery lists",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5000",
+        "description": "Local development server"
+      }
+    ],
+    "paths": {
+      "/grocery": {
+        "get": {
+          "summary": "Get all items in the grocery list",
+          "responses": {
+            "200": {
+              "description": "Successful operation",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "item": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Add a new item to the grocery list",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "item": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Item added successfully"
+            }
+          }
+        }
+      },
+      "/grocery/{item_id}": {
+        "put": {
+          "summary": "Update an item in the grocery list",
+          "parameters": [
+            {
+              "name": "item_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "item": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Item updated successfully"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete an item from the grocery list",
+          "parameters": [
+            {
+              "name": "item_id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Item deleted successfully"
+            }
+          }
+        }
+      }
+    }
+  }
+  
